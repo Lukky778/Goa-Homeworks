@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Responsive Navbar</title>
+<style>
+  header {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+    color: white;
+    padding: 1rem 2rem;
+  }
+  nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  nav a:hover {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  nav a.active {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      gap: 1rem;
+      background: #2c3e50;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="https://www.youtube.com/" class="active">Home</a>
+    <a href="https://example.com/about">About</a>
+    <a href="https://example.com/services">Services</a>
+    <a href="https://example.com/contact">Contact</a>
+  </nav>
+  <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items:center;">
+    <img src="data:image/png;base64,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" alt="Car Icon" width="24" height="24" />
+    <img src="" alt="Call Icon" width="24" height="24" />
+    <span>Call us: +1234567890</span>
+  </div>
+</header>
+
+</body>
+</html>

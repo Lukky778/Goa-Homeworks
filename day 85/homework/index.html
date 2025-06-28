@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JavaScript Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        div.section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>JavaScript სავარჯიშოები</h1>
+
+    <div class="section" id="section1">
+        <h2>1. String Literal და ცვლადი</h2>
+        <div id="greetingOutput"></div>
+    </div>
+
+    <div class="section" id="section2">
+        <h2>2. Prompt და Switch-Case</h2>
+        <button onclick="favoriteMonth()">შეიყვანე საყვარელი თვე</button>
+        <div id="seasonOutput" style="margin-top:10px; font-weight: bold;"></div>
+    </div>
+
+    <div class="section" id="section3">
+        <h2>3. Condition და Ternary Operator</h2>
+        <div id="ageStatus"></div>
+    </div>
+
+    <div class="section" id="section4">
+        <h2>4. ახალი თარიღი და გამოყვანა HTML-ში</h2>
+        <div id="dateInfo"></div>
+    </div>
+
+    <div class="section" id="section5">
+        <h2>5. Countdown-ები ახალ წლამდე, გიოგობამდე და ბარბარობამდე</h2>
+        <h3>ახალი წელი:</h3>
+        <div id="countdownNewYear"></div>
+        <h3>გიოგობა:</h3>
+        <div id="countdownGiogoba"></div>
+        <h3>ბარბარობა:</h3>
+        <div id="countdownBarbaroba"></div>
+    </div>
+
+    <script>
+        let greeting = "Hello World!";
+        let newGreeting = `${greeting}`;
+        document.getElementById('greetingOutput').innerText = `greeting: ${greeting}\nnewGreeting: ${newGreeting}`;
+
+        function favoriteMonth() {
+            let month = prompt("შეიყვანეთ თქვენი საყვარელი თვე (იანვარი, აპრილი, ივლისი, ოქტომბერი, დეკემბერი):");
+            if (!month) {
+                document.getElementById("seasonOutput").innerText = "მონაცემი არ მიგვიღია.";
+                return;
+            }
+            let season;
+            switch (month.trim().toLowerCase()) {
+                case "იანვარი":
+                case "დეკემბერი":
+                    season = "ზამთარი";
+                    break;
+                case "აპრილი":
+                    season = "გაზაფხული";
+                    break;
+                case "ივლისი":
+                    season = "ზაფხული";
+                    break;
+                case "ოქტომბერი":
+                    season = "შემოდგომა";
+                    break;
+                default:
+                    season = "არ არის მონაცემი";
+            }
+            document.getElementById("seasonOutput").innerText = `თქვენი საყვარელი სეზონია: ${season}`;
+        }
+
+        let age = 20;
+        let status = age >= 18 ? "Adult" : "Minor";
+        document.getElementById('ageStatus').innerText = `ასაკი: ${age}\nსტატუსი: ${status}`;
+
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        let day = now.getDate();
+        let hour = now.getHours();
+
+        document.getElementById('dateInfo').innerHTML = `
+      წელი: ${year} <br>
+      თვე: ${month} <br>
+      დღე: ${day} <br>
+      საათი: ${hour}
+    `;
+
+        // 5. Countdown-ები
+        function getTimeRemaining(endtime) {
+            const total = Date.parse(endtime) - Date.parse(new Date());
+            const seconds = Math.floor((total / 1000) % 60);
+            const minutes = Math.floor((total / 1000 / 60) % 60);
+            const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+            const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+            return { total, days, hours, minutes, seconds };
+        }
+
+        function initializeClock(id, endtime) {
+            const clock = document.getElementById(id);
+
+            function updateClock() {
+                const t = getTimeRemaining(endtime);
+
+                if (t.total <= 0) {
+                    clock.innerHTML = "დრო ამოიწურა!";
+                    clearInterval(timeinterval);
+                    return;
+                }
+
+                clock.innerHTML = `
+          დღეები: ${t.days} <br>
+          საათები: ${t.hours} <br>
+          წუთები: ${t.minutes} <br>
+          წამები: ${t.seconds}
+        `;
+            }
+
+            updateClock();
+            const timeinterval = setInterval(updateClock, 1000);
+        }
+
+        let currentYear = new Date().getFullYear();
+        let newYearDate = new Date(currentYear + 1, 0, 1, 0, 0, 0);
+        let giogobaDate = new Date(currentYear, 10, 23, 0, 0, 0);
+        let barbarobaDate = new Date(currentYear, 11, 17, 0, 0, 0);
+
+        initializeClock('countdownNewYear', newYearDate);
+        initializeClock('countdownGiogoba', giogobaDate);
+        initializeClock('countdownBarbaroba', barbarobaDate);
+
+    </script>
+
+</body>
+
+</html>

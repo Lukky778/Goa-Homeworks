@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arrow Function addEventListener</title>
+</head>
+<body>
+
+<button id="btn1">Change BG to Light Blue (Inline arrow)</button>
+<button id="btn2">Change BG to Light Green (Arrow variable)</button>
+<button id="btn3">Change BG to Salmon (Inline arrow)</button>
+
+<script>
+document.getElementById("btn1").addEventListener("click", () => {
+  document.body.style.backgroundColor = "lightblue";
+});
+
+const changeBgGreen = () => {
+  document.body.style.backgroundColor = "lightgreen";
+};
+document.getElementById("btn2").addEventListener("click", changeBgGreen);
+
+document.getElementById("btn3").addEventListener("click", () => {
+  document.body.style.backgroundColor = "salmon";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Assignments</title>
+</head>
+<body>
+
+  <script>
+    const ul1 = document.createElement("ul");
+    for (let i = 0; i < 15; i++) {
+      const li = document.createElement("li");
+      li.textContent = `Item ${i}`;
+      ul1.appendChild(li);
+    }
+    document.body.appendChild(ul1);
+
+    const styledDiv = document.createElement("div");
+    for (let i = 0; i < 5; i++) {
+      const p = document.createElement("p");
+      const size = 14 + i * 2;
+      const color = i % 2 === 0 ? "blue" : "green";
+      p.textContent = `This is text number ${i + 1}`;
+      p.setAttribute("style", `font-size: ${size}px; color: ${color};`);
+      styledDiv.appendChild(p);
+    }
+    document.body.appendChild(styledDiv);
+
+    const divWithChildren = document.createElement("div");
+    for (let i = 0; i < 3; i++) {
+      const p = document.createElement("p");
+      p.textContent = `Paragraph ${i + 1}`;
+      divWithChildren.appendChild(p);
+    }
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove First Child";
+    removeBtn.style.marginTop = "10px";
+
+    removeBtn.addEventListener("click", () => {
+      if (divWithChildren.firstChild) {
+        divWithChildren.removeChild(divWithChildren.firstChild);
+        alert("Child removed!");
+      }
+    });
+
+    document.body.appendChild(divWithChildren);
+    document.body.appendChild(removeBtn);
+
+    const ul2 = document.createElement("ul");
+    for (let i = 1; i <= 5; i++) {
+      const li = document.createElement("li");
+      li.textContent = `I am list item ${i}`;
+      li.className = i % 2 === 0 ? "even" : "odd";
+      ul2.appendChild(li);
+    }
+    document.body.appendChild(ul2);
+ 
+    const originalP = document.createElement("p");
+    originalP.textContent = "I am the original paragraph.";
+
+    const clonedP = originalP.cloneNode(true);
+    clonedP.textContent = "I am the cloned paragraph.";
+    clonedP.style.color = "red"; 
+
+    document.body.appendChild(originalP);
+    document.body.appendChild(clonedP);
+  </script>
+
+</body>
+</html>

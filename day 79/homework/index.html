@@ -1,0 +1,101 @@
+<button id="colorBtn">Change Body Color</button>
+
+<script>
+const btn = document.getElementById("colorBtn");
+
+btn.addEventListener("click", () => {
+  document.body.style.backgroundColor = "lightblue";
+});
+
+const changeGreen = () => {
+  document.body.style.backgroundColor = "lightgreen";
+};
+btn.addEventListener("click", changeGreen);
+
+btn.addEventListener("click", () => {
+  document.body.style.backgroundColor = "lightcoral";
+});
+</script>
+
+<div id="box1" style="width:100px; height:100px; background:#3490dc; margin:10px;"></div>
+<div id="box2" style="width:100px; height:100px; background:#f66; margin:10px;"></div>
+
+<script>
+const box1 = document.getElementById("box1");
+const box2 = document.getElementById("box2");
+
+function enlarge(e) {
+  e.target.style.width = "200px";
+  e.target.style.height = "200px";
+}
+function shrink(e) {
+  e.target.style.width = "100px";
+  e.target.style.height = "100px";
+}
+
+box1.addEventListener("mouseover", enlarge);
+box1.addEventListener("mouseout", shrink);
+box2.addEventListener("mouseover", enlarge);
+box2.addEventListener("mouseout", shrink);
+</script>
+
+<div id="hoverDiv" style="width:100px; height:100px; background:#7f8c8d; margin:10px;">Hover me</div>
+<button id="clickBtn" style="margin:10px;">Press me</button>
+
+<script>
+const hoverDiv = document.getElementById("hoverDiv");
+const clickBtn = document.getElementById("clickBtn");
+
+hoverDiv.addEventListener("mouseover", () => {
+  hoverDiv.style.backgroundColor = "green";
+});
+
+hoverDiv.addEventListener("mouseout", () => {
+  hoverDiv.style.backgroundColor = "#7f8c8d";
+});
+
+clickBtn.addEventListener("mousedown", () => {
+  clickBtn.style.backgroundColor = "orange";
+});
+
+clickBtn.addEventListener("mouseup", () => {
+  clickBtn.style.backgroundColor = "";
+});
+</script>
+
+<img id="img" src="" alt="img" style="width:100px; height:100px; transition: all 0.4s ease; cursor:pointer;">
+
+<script>
+const img = document.getElementById("img");
+
+img.addEventListener("mouseover", () => {
+  img.style.width = "200px";
+  img.style.height = "200px";
+});
+img.addEventListener("mouseout", () => {
+  img.style.width = "100px";
+  img.style.height = "100px";
+});
+</script>
+
+<button id="addListenerBtn">Add Color Change Listener</button>
+<button id="removeListenerBtn">Remove Color Change Listener</button>
+
+<script>
+const addBtn = document.getElementById("addListenerBtn");
+const removeBtn = document.getElementById("removeListenerBtn");
+
+function changeBodyColor() {
+  document.body.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+}
+
+addBtn.addEventListener("click", () => {
+  document.body.addEventListener("click", changeBodyColor);
+  alert("Event listener added! Click anywhere on the page to change background color.");
+});
+
+removeBtn.addEventListener("click", () => {
+  document.body.removeEventListener("click", changeBodyColor);
+  alert("Event listener removed! Background color won't change on click.");
+});
+</script>
